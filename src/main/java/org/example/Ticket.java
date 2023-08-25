@@ -31,7 +31,6 @@ public class Ticket {
     private int stops;
     private int price;
 
-
     public int flightDuration() {
         LocalDateTime departureDateTime = LocalDateTime.of(getDepartureDate().getYear(),
                 getDepartureDate().getMonth(), getDepartureDate().getDayOfMonth(),
