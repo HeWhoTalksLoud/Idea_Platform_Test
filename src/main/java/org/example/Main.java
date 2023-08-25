@@ -27,8 +27,6 @@ public class Main {
         }
 
         tickets = ticketList.getTickets();
-        tickets.forEach(System.out::println);
-        System.out.println();
 
         // Минимальное время полета между городами Владивосток и Тель-Авив
         // для каждого авиаперевозчика
@@ -42,10 +40,13 @@ public class Main {
         Map<String, List<Ticket>> filteredTicketsByCarrier = filteredTicketsList.stream()
                 .collect(Collectors.groupingBy(Ticket::getCarrier));
 
-        filteredTicketsByCarrier.forEach((key, value) -> System.out.printf("%s: %s мин.\n", key,
-                value.stream()
+        System.out.printf("Мин. время полета между городами %s и %s по перевозчикам:\n",
+                city1, city2);
+
+        filteredTicketsByCarrier.forEach((key, value) -> System.out.printf("%s: %s\n", key,
+                minutesToHoursMinutesString((value.stream()
                         .map(Ticket::flightDuration)
-                        .min(Comparator.comparingInt(o -> o)).orElse(0)));
+                        .min(Comparator.comparingInt(o -> o)).orElse(0)))));
 
         // Разница между средней ценой и медианой для полета
         // между городами Владивосток и Тель-Авив
@@ -72,5 +73,14 @@ public class Main {
                 .orElse(Double.NaN);
     }
 
+    private static String minutesToHoursMinutesString(int minutes) {
+        int hours = minutes / 60;
+        int minutesRemaining = minutes % 60;
+        StringBuilder result = new StringBuilder();
+        if (hours != 0) result.append(hours).append(" ч. ");
+        if (minutesRemaining != 0) result.append(minutesRemaining).append( "мин.");
+
+        return result.toString().trim();
+    }
 
 }

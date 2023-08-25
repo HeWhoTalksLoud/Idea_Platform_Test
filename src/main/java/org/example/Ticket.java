@@ -31,23 +31,6 @@ public class Ticket {
     private int stops;
     private int price;
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "origin='" + origin + '\'' +
-                ", originName='" + originName + '\'' +
-                ", destination='" + destination + '\'' +
-                ", destinationName='" + destinationName + '\'' +
-                ", departureDate=" + departureDate +
-                ", departureTime=" + departureTime +
-                ", arrivalDate=" + arrivalDate +
-                ", arrivalTime=" + arrivalTime +
-                ", carrier='" + carrier + '\'' +
-                ", stops=" + stops +
-                ", price=" + price +
-                '}';
-    }
-    
     public int flightDuration() {
         LocalDateTime departureDateTime = LocalDateTime.of(getDepartureDate().getYear(),
                 getDepartureDate().getMonth(), getDepartureDate().getDayOfMonth(),
